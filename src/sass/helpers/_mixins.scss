@@ -1,0 +1,114 @@
+/*
+ ** Prefix CSS3 Properties
+ ** Accept Arguments => Property Name, Property Values, Vendor Prefixes
+ ** Example: @include prefixer(transition, all .3s ease, webkit moz o)
+ */
+
+@mixin prefixer($property, $value, $prefixes: ()) {
+    @each $prefix in $prefixes {
+        #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    #{$property}: $value;
+}
+
+/*
+ ** Overlay Mixin
+ ** Accept Argument => Color
+ ** Example: @include overlay(black, .5);
+ */
+
+@mixin overlay($color, $opacity) {
+    position: absolute;
+    @include position((top: 0, left: 0));
+    @include size(100%, 100%);
+    background-color: rgba($color, $opacity);
+}
+
+/*
+ ** Circle Mixin
+ ** Accept Argument => Dimensions
+ ** Example: @include circle(100px);
+ */
+
+@mixin circle($dimension) {
+    @include size($dimension, $dimension);
+    @include border-radius(50%);
+}
+
+
+/*
+  ** Background Cover Mixin
+  ** Accept No Arguments
+  ** Example: @include cover();
+  */
+@mixin cover() {
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/*
+  ** Position Mixin
+  ** Accept Map of position direction
+  ** Example: @include position((top: 1px, right: 1px, bottom: 1px, left: 1px));
+  */
+@mixin position($position: (top: auto, right: auto, bottom: auto, left: auto)) {
+    top: map-get($position, top);
+    right: map-get($position, right);
+    bottom: map-get($position, bottom);
+    left: map-get($position, left);
+}
+
+/*
+  ** Psedo element absoulute position
+  ** Accept no arguments
+  ** Example: @include psedo-absolute;
+  */
+@mixin psedo-absolute {
+    content: '';
+    position: absolute;
+}
+
+/*
+  ** Transparent background
+  ** Accept two arguments: color: map(), opacity: scale from 0 to 1
+  ** Example: 
+  * * use prefixes to color keys to avoid sass compile them to color values like #FFF
+    $colors: (t-gold: $gold, t-blue: $blue, t-dblue: $dblue);
+    @include transparent-colors($colors, 0.8);
+  */
+@mixin transparent-colors($colors, $opacity) {
+    @each $color in $colors {
+        .#{nth($color, 1)}:before {
+            background: rgba(nth($color, 2), $opacity);
+        }
+    }
+}
+
+/*
+  ** Outline button
+  ** Accept background, color, border colors
+  ** Example: @include outline-btn($white, rgba($gold, 0.8), $white);
+  */
+@mixin outline-btn($background: transparent, $color: $primary, $border-color: $primary) {
+    background: $background;
+    border: 1px solid $border-color;
+    color: $color;
+}
+
+/*
+  ** Custom arrow icon color
+  ** Accept color
+  ** Example: @include arrow-icon-color($white)
+  */
+
+@mixin arrow-icon-color($color: $primary) {
+    &:before {
+        background: $color;
+    }
+
+    &:after {
+        border-right-color: $color;
+    }
+}

@@ -1,0 +1,71 @@
+# Deny access to filenames starting with dot(.)
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deny access to files with extensions .ini, .psd, .log, .sh
+<FilesMatch "^(init.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Dont list files in index pages
+IndexIgnore *
+
+# Simple 404 for missing files
+<FilesMatch "^(.*)$">
+    ErrorDocument 404 "File Not Found"
+</FilesMatch>
+
+RewriteEngine on
+
+# Redirect old urls to current
+# Blog Post (with lang and id query string)
+RewriteCond %{REQUEST_URI} /blog-post(\.php|\.html)
+RewriteCond %{ENV:REDIRECT_STATUS} !200
+RewriteCond %{QUERY_STRING} id=([0-9])&lang=(\w+) [NC]
+RewriteRule ^(.*)(\.php|\.html)$ <!--HOSTNAME--!>/%2/$1/%1? [R=301,L]
+# Blog Post (with lang and id query string)
+RewriteCond %{REQUEST_URI} /blog-post(\.php|\.html)
+RewriteCond %{ENV:REDIRECT_STATUS} !200
+RewriteCond %{QUERY_STRING} lang=(\w+)&id=([0-9]) [NC]
+RewriteRule ^(.*)(\.php|\.html)$ <!--HOSTNAME--!>/%1/$1/%2? [R=301,L]
+# Blog Post (with only id query string)
+RewriteCond %{REQUEST_URI} /blog-post(\.php|\.html)
+RewriteCond %{ENV:REDIRECT_STATUS} !200
+RewriteCond %{QUERY_STRING} id=([0-9]) [NC]
+RewriteCond %{QUERY_STRING} !lang=(\w+) [NC]
+RewriteRule ^(.*)(\.php|\.html)$ <!--HOSTNAME--!>/en/$1/%1? [R=301,L]
+# Any page (with only lang query string)
+RewriteCond %{REQUEST_URI} /([A-Za-z_-]+)(\.php|\.html)
+RewriteCond %{ENV:REDIRECT_STATUS} !200
+RewriteCond %{QUERY_STRING} lang=(\w+) [NC]
+RewriteRule ^(.*)(\.php|\.html)$ <!--HOSTNAME--!>/%1/$1? [R=301,L]
+# Any page (without any query string)
+RewriteCond %{REQUEST_URI} /([A-Za-z_-]+)(\.php|\.html)
+RewriteCond %{ENV:REDIRECT_STATUS} !200
+RewriteCond %{QUERY_STRING} !lang=(\w+) [NC]
+RewriteRule ^(.*)(\.php|\.html)$ <!--HOSTNAME--!>/en/$1? [R=301,L]
+
+# Add Tailslash
+RewriteCond %{REQUEST_URI} !(/$|\.)
+RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
+
+# Add id rule only to blog-post page
+RewriteCond %{REQUEST_URI} !(\.php|\.css|\.js|\.png|\.jpg|\.gif|robot\.txt)$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(\w+)*/blog-post/([0-9]*)/*$ blog-post.php?lang=$1&id=$2 [QSA,L]
+
+# Write URL and query string as a path
+RewriteCond %{REQUEST_URI} !(\.php|\.css|\.js|\.png|\.jpg|\.gif|robot\.txt)$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(\w+)/([A-Za-z_-]+)/*$ $2.php?lang=$1 [QSA,L]
+
+# Remove index from URL
+RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robot\.txt)$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(\w+)*/*$ index.php?lang=$1 [QSA,L]
+
+# ErrorDocument 404 404.php

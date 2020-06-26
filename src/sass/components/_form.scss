@@ -1,0 +1,24 @@
+.form--group {
+    &.req {
+        label {
+            padding-left: 15px;
+
+            &:before {
+                content: '\e808';
+                font-family: 'icon8';
+                position: absolute;
+                @include position((top: 0, left: 5px));
+                color: $danger;
+            }
+
+            #{$rtl-class} & {
+                padding-left: 0;
+                padding-right: 15px;
+
+                &:before {
+                    @include position((right: 5px, left: auto));
+                }
+            }
+        }
+    }
+}

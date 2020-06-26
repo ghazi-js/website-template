@@ -1,0 +1,112 @@
+//
+// Material loading spinner
+//
+
+$offset: 187;
+$duration: 1.8s;
+
+
+.spinner-wrapper {
+    @include position((top: 0, left: 0));
+    background: $white;
+    z-index: $zindex-top-level;
+}
+
+.spinner {
+    animation: rotator $duration linear infinite;
+
+    .path {
+        stroke-dasharray: $offset;
+        stroke-dashoffset: 0;
+        transform-origin: center;
+        animation:
+            dash $duration ease-in-out infinite,
+            colors ($duration*4) ease-in-out infinite;
+    }
+
+    .btn-spinner & .path {
+        stroke: #FFF;
+        animation: dash $duration ease-in-out infinite;
+    }
+}
+
+@keyframes colors {
+    0% {
+        stroke: $dark;
+    }
+
+    20% {
+        stroke: $pink;
+    }
+
+    40% {
+        stroke: $orange;
+    }
+
+    60% {
+        stroke: $primary;
+    }
+
+    80% {
+        stroke: $secondary;
+    }
+
+    100% {
+        stroke: $green;
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: $offset;
+    }
+
+    50% {
+        stroke-dashoffset: $offset/4;
+        transform: rotate(135deg);
+    }
+
+    100% {
+        stroke-dashoffset: $offset;
+        transform: rotate(450deg);
+    }
+}
+
+@keyframes rotator {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(270deg);
+    }
+}
+
+//
+// Custom loading dots
+//
+.loading {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.dot {
+    @include size(7px, 7px);
+    background: $white;
+    margin: 0 0 0 5px;
+    animation: pulse-a 0.5s alternate infinite ease-in-out;
+
+    @for $i from 1 to 4 {
+        &.dot:nth-child(#{$i}) {
+            animation-delay: $i * 0.125s;
+        }
+    }
+}
+
+@keyframes pulse-a {
+    to {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}

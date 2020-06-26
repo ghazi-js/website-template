@@ -1,0 +1,126 @@
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scale-in {
+    from {
+        opacity: 0;
+        transform: scale(.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fade-in-left {
+    from {
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-right {
+    from {
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@for $i from 1 to 13 {
+    &.delay-#{$i * 10} {
+        animation-delay: #{$i * 100}ms;
+    }
+}
+
+.animate-element {
+    opacity: 0;
+
+    &.animated {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+
+        &.scale-in {
+            animation-name: scale-in;
+        }
+
+        &.fade-in {
+            animation-name: fade-in;
+        }
+
+        &.fade-in-left {
+            animation-name: fade-in-left;
+
+            #{$rtl-class} & {
+                animation-name: fade-in-right;
+            }
+        }
+
+        &.fade-in-up {
+            animation-name: fade-in-up;
+        }
+
+        &.fade-in-down {
+            animation-name: fade-in-down;
+        }
+
+        &.fast {
+            animation-duration: .8s;
+        }
+
+        &.faster {
+            animation-duration: .5s;
+        }
+
+        &.slow {
+            animation-duration: 2s;
+        }
+
+        &.slower {
+            animation-duration: 3s;
+        }
+
+        @include media-breakpoint-down(sm) {
+            &.d {
+                animation-delay: 0s;
+            }
+        }
+    }
+}

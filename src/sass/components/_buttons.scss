@@ -1,0 +1,136 @@
+%cubic-transition {
+    transition: transform .45s cubic-bezier(0.25, 1, 0.33, 1), box-shadow .45s cubic-bezier(0.25, 1, 0.33, 1);
+}
+
+%cubic-effect {
+    @include box-shadow(0 10px 15px rgba($black, 0.16));
+    transform: translateY(-3px);
+}
+
+%btn-lg {
+    height: 48px;
+    line-height: 2.3;
+}
+
+%primary-button {
+    background: $blue;
+    border: 1px solid $blue;
+    color: $white;
+}
+
+%outline-btn-arrow {
+    transform: scaleX(-.7);
+    transition: $btn-transition;
+}
+
+.btn {
+    &.ab-btn {
+        @include border-radius(24px);
+        font-size: $small-font-size;
+        width: 196px;
+        @extend %btn-lg;
+
+        @include hover-focus-active {
+            @include outline-btn($primary, $white, $primary);
+        }
+    }
+
+    &.ab-btn-lg {
+        @extend %btn-lg;
+    }
+
+    &.btn.ab-btn-primary {
+        @include hover-focus-active {
+            @include outline-btn($blue, $white, $blue);
+        }
+    }
+
+    &.btn-outline-success {
+        & .arrow-icon {
+            @extend %outline-btn-arrow;
+            @include arrow-icon-color($success);
+        }
+
+        @include hover-focus-active {
+            @include outline-btn($success, $white, $success);
+
+            & .arrow-icon {
+                @include arrow-icon-color($white);
+            }
+        }
+    }
+
+    &.btn-outline-pink {
+        @include outline-btn(transparent, $pink, $pink);
+
+        & .arrow-icon {
+            @extend %outline-btn-arrow;
+            @include arrow-icon-color($pink);
+        }
+
+        @include hover-focus-active {
+            @include outline-btn($pink, $white, $pink);
+
+            & .arrow-icon {
+                @include arrow-icon-color($white);
+            }
+        }
+    }
+
+    &.btn-outline-orange {
+        @include outline-btn(transparent, $orange, $orange);
+
+        & .arrow-icon {
+            @extend %outline-btn-arrow;
+            @include arrow-icon-color($orange);
+        }
+
+        @include hover-focus-active {
+            @include outline-btn($orange, $white, $orange);
+
+            & .arrow-icon {
+                @include arrow-icon-color($white);
+            }
+        }
+    }
+
+    &.cubic {
+        @extend %cubic-transition;
+
+        @include hover {
+            @extend %cubic-effect;
+        }
+    }
+
+    &.nav-btn {
+        @media only screen and (min-width: map-get($grid-breakpoints, lg)) and (max-width: map-get($grid-breakpoints, lg) + 90) {
+            width: 160px;
+        }
+    }
+
+    .navbar-light &.nav-btn {
+
+        @extend %primary-button;
+        @extend %cubic-transition;
+
+        @include hover-focus-active {
+            @extend %cubic-effect;
+
+        }
+    }
+
+
+    .page .navbar-dark & {
+        @include media-breakpoint-down(md) {
+            background: $blue;
+            border: 1px solid $blue;
+            color: $white;
+
+            transition: transform .45s cubic-bezier(0.25, 1, 0.33, 1), box-shadow .45s cubic-bezier(0.25, 1, 0.33, 1);
+
+            @include hover-focus-active {
+                transform: translateY(-3px);
+            }
+        }
+    }
+}

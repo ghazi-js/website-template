@@ -1,0 +1,148 @@
+// TODO: Edit Bootstrap default variables
+// Variables
+$assets-path: '../assets';
+$rtl-class: '.bootstrap-rtl';
+
+// Color system
+$dred: #ec1b2f;
+$t-red: #FF1100;
+$dblue: #1d59ae;
+$purple: #9B7CB7;
+$pink: #ED7899;
+$purple-light: #ACB7D0;
+
+
+// icons
+$icon-prefix: icon;
+$icons-font-size: 1rem;
+
+/* Override Bootstrap Variables
+   =============================== */
+
+//
+// Color system
+//
+
+$blue: #71C7EF;
+$red: $pink;
+$orange: #F6A874;
+$green: #72CAAF;
+$gold: #cb9804;
+$dark: #1B1B40;
+$white: #FFF;
+$primary: $purple;
+$secondary: $blue;
+
+$theme-colors: ('primary': $purple,
+    'secondary': $blue,
+    'success': $green,
+    'info': $blue,
+    'warning': $orange,
+    'danger': $pink,
+    'light': #F5F5F5,
+    'dark': $dark);
+
+// 
+// Body
+// 
+$body-color: $dark;
+
+// 
+// Links
+// 
+
+$link-color: $blue;
+$link-hover-color: $orange;
+$link-hover-decoration: none;
+
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+// stylelint-disable
+$spacer: 1rem;
+$spacers: (6: ($spacer * 4),
+    7: ($spacer * 5),
+    8: ($spacer * 6));
+
+// 
+// Fonts
+// 
+
+$font-family-sans-serif: 'Montserrat',
+'Arial',
+'sans-serif';
+
+
+$font-size-base: 0.95rem; // Assumes the browser default, typically `16px`
+$font-size-lg: 1.25rem;
+$font-size-sm: .88rem;
+
+$line-height-base: 1.5;
+
+$h1-font-size: 2.5rem;
+$h2-font-size: 2.25rem;
+$h3-font-size: 2rem;
+$h4-font-size: 1.4rem;
+$h5-font-size: 1.1rem;
+$h6-font-size: $font-size-base;
+$small-font-size: $font-size-sm;
+$headings-font-weight: 700;
+$hr-border-color: $dark;
+
+
+//
+// Modals
+//
+$modal-backdrop-bg: $dark;
+$modal-backdrop-opacity: 0.9;
+
+
+//
+// Navbar
+//
+$navbar-dark-hover-color: $white;
+$navbar-dark-active-color: $white;
+
+$navbar-light-color: $dark;
+$navbar-light-hover-color: $orange;
+$navbar-light-active-color: $orange;
+$navbar-light-disabled-color: $dark;
+
+// 
+// Options
+//
+
+$enable-shadows: true;
+
+
+//
+// Z-index
+//
+
+$zindex-top-level: 1080;
+
+// 
+//  Forms
+// 
+
+$input-btn-padding-x: 1rem;
+$input-btn-padding-y: 0.5rem;
+$input-btn-line-height: 2;
+$input-btn-focus-box-shadow: none;
+$input-color: $dark;
+$input-border-color: $purple-light;
+$input-focus-border-color: rgba($dark, 0.6);
+$input-placeholder-color: $purple-light;
+$input-height: 48;
+$input-line-height: 2;
+$input-padding-y: 0.5rem;
+
+
+// 
+//  Buttons
+//
+$btn-focus-width: 0;

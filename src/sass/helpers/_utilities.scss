@@ -1,0 +1,48 @@
+.text-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ab-text-light {
+    color: $gray-100;
+}
+
+.ab-text-plight {
+    color: $purple-light;
+}
+
+.ab-text-red {
+    color: $t-red;
+}
+
+.drop-caps > p:first-child:first-letter {
+    float: left;
+    display: block;
+    margin-right: .8rem;
+    font-size: 6.7rem;
+    font-weight: bold;
+    line-height: 5.6rem;
+    text-transform: uppercase;
+}
+
+.cursor-p {
+    cursor: pointer;
+}
+
+.z-5 {
+    z-index: 5;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.overflow-h {
+    overflow: hidden;
+}
+
+.invisible {
+    opacity: 0;
+    pointer-events: none;
+}

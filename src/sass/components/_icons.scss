@@ -1,0 +1,143 @@
+// TODO: Edit your font icon
+@font-face {
+    font-family: 'icon8';
+    src: url('#{$assets-path}/fonts/icons8/icons8.eot'),
+    url('#{$assets-path}/fonts/icons8/icons8.eot#iefix') format('embedded-opentype'),
+    url('#{$assets-path}/fonts/icons8/icons8.woff') format('woff'),
+    url('#{$assets-path}/fonts/icons8/icons8.ttf') format('truetype'),
+    url('#{$assets-path}/fonts/icons8/icons8.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^='#{$icon-prefix}-'],
+[class*=' #{$icon-prefix}-'] {
+    color: $dark;
+    font-size: $icons-font-size;
+
+    &:before {
+        font-family: 'icon8';
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+
+        display: inline-block;
+        text-decoration: inherit;
+        width: 1em;
+        text-align: center;
+
+        /* For safety - reset parent styles, that can break glyph codes*/
+        font-variant: normal;
+        text-transform: none;
+
+        /* fix buttons height, for twitter bootstrap */
+        line-height: 1em;
+
+        /* Font smoothing. That was taken from TWBS */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+.#{$icon-prefix}-calendar:before {
+    content: '\e800';
+}
+
+.#{$icon-prefix}-delete:before {
+    content: '\e803';
+}
+
+.#{$icon-prefix}-play:before {
+    content: '\e804';
+}
+
+.#{$icon-prefix}-quote:before {
+    content: '\e805';
+}
+
+.#{$icon-prefix}-facebook:before {
+    content: '\e806';
+}
+
+.#{$icon-prefix}-twitter:before {
+    content: '\e807';
+}
+
+.#{$icon-prefix}-star:before {
+    content: '\e808';
+}
+
+.#{$icon-prefix}-linkedin:before {
+    content: '\e809';
+}
+
+.#{$icon-prefix}-right-arrow:before {
+    content: '\e801';
+}
+
+.#{$icon-prefix}-checkmark:before {
+    content: '\E80A';
+}
+
+.#{$icon-prefix}-reject:before {
+    content: '\E802';
+}
+
+.#{$icon-prefix}-marker:before {
+    content: '\E80B';
+}
+
+.#{$icon-prefix}-phone:before {
+    content: '\E80C';
+}
+
+.#{$icon-prefix}-mail:before {
+    content: '\E80D';
+}
+
+.arrow-icon {
+    position: relative;
+    @include size(24px, 8px);
+
+    &:before {
+        @include psedo-absolute;
+        @include position((bottom: 0, left: 2px));
+        @include size(22px, 2px);
+        background: $dark;
+    }
+
+    &:after {
+        @include psedo-absolute;
+        @include position((bottom: 0, left: 0));
+        border-top: 8px solid transparent;
+        border-right: 8px solid $dark;
+    }
+
+    &.arrow-right,
+    #{$rtl-class} &.arrow-left {
+        transform: scaleX(-1);
+    }
+
+    #{$rtl-class} &.arrow-right {
+        transform: scaleX(1);
+    }
+
+    .ab-link-secondary & {
+        @include arrow-icon-color($blue);
+    }
+
+    .ab-link-secondary:hover &,
+    .ab-link-primary:hover & {
+        @include arrow-icon-color($orange);
+    }
+
+    .ab-link-primary & {
+        @include arrow-icon-color($primary);
+    }
+
+    .ab-link-white &,
+    .ab-link-white:hover & {
+        @include arrow-icon-color($white);
+    }
+
+}

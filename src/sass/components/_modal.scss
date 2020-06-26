@@ -1,0 +1,55 @@
+%pointer-auto {
+    pointer-events: initial;
+}
+
+%pointer-none {
+    pointer-events: none;
+    display: block;
+}
+
+/* Modal */
+.modal {
+    /* Fix for IE11 */
+    z-index: -20;
+
+    &,
+    * {
+        @extend %pointer-none;
+    }
+
+    &.show {
+        z-index: $zindex-modal;
+        @extend %pointer-auto;
+
+        * {
+            @extend %pointer-auto;
+        }
+    }
+
+    .modal-close-icon {
+        @include position((top: 0, right: 0));
+        @extend %pointer-none;
+
+        .icon-delete {
+            @extend %pointer-none;
+            font-size: 2rem;
+        }
+
+        #{$rtl-class} & {
+            @include position((right: auto, left: 0));
+        }
+    }
+    .modal-content {
+        box-shadow: none;
+    }
+}
+
+.modal-backdrop {
+    @extend %pointer-none;
+
+    &.show {
+        opacity: $modal-backdrop-opacity;
+        @extend %pointer-auto;
+    }
+
+}

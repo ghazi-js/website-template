@@ -1,0 +1,93 @@
+/* Blogs */
+
+.card {
+    &.shadow {
+        @include box-shadow(0px 0px 6px rgba($black, 0.1));
+        transition: box-shadow 0.2s ease-in-out, top 0.2s ease-in-out;
+        top: 0;
+    }
+
+    &.shadow:hover {
+        top: -5px;
+        @include box-shadow(0 15px 30px rgba($black, 0.1));
+    }
+
+}
+
+.card-title {
+    color: $dark;
+}
+
+.card-head {
+    min-height: 170px;
+}
+
+.card-devider {
+    @include size(88px, 2px);
+    min-height: 2px;
+    background: $primary;
+}
+
+.card-quote {
+    @include size(64px, 64px);
+    @include position((top: -4px, left: 9%));
+    @include border-radius(0 0 4px 4px);
+    z-index: 10;
+
+    .#{$icon-prefix}-quote {
+        font-size: 1.5rem;
+    }
+
+    &:before {
+        @include psedo-absolute();
+        @include position((top: 0, right: 100%));
+        border-top: 5px solid transparent;
+        border-right: 3px solid #9b7cb7;
+    }
+}
+
+
+// Card with circle image
+
+.card-rounded-img {
+
+    &:before,
+    &:after {
+        @include psedo-absolute();
+        display: block;
+    }
+
+    &:before {
+        border: 2px solid $secondary;
+        @include border-radius(50%);
+        @include position((top: 0, right: 0, bottom: 0, left: 0));
+        z-index: 1;
+    }
+
+    &:after {
+        background: $white;
+        @include position((top: 13px, right: 13px, bottom: 13px, left: 13px));
+        transform: rotate(20deg);
+        transition: transform 0.2s ease-in-out;
+        z-index: 2;
+    }
+
+    img {
+        z-index: 3;
+    }
+
+}
+
+
+#{$rtl-class} {
+
+    .card-quote {
+        @include position((right: 9%, left: auto));
+    }
+
+    &:before {
+        @include position((right: auto, left: 100%));
+        border-right: 3px solid transparent;
+        border-left: 3px solid #9b7cb7;
+    }
+}
